@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>কাজী স্টোর | ডিজিটাল সার্ভিস পয়েন্ট</title>
+  <!-- Google Fonts: Hind Siliguri + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --deep-blue: #0B2B4B;
+      --deep-blue-light: #124a6f;
+      --pure-white: #FFFFFF;
+      --off-white: #F9FAFE;
+      --subtle-grey: #F1F4F8;
+      --grey-border: #E4E9F0;
+      --text-dark: #1F2A3E;
+      --text-muted: #4A5A72;
+      --card-shadow: 0 12px 28px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+      --hover-shadow: 0 20px 32px -12px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(11, 43, 75, 0.08);
+      --transition: all 0.25s ease;
+    }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background-color: var(--off-white);
+      color: var(--text-dark);
+      line-height: 1.5;
+      transition: background-color 0.3s ease, color 0.2s ease;
+    }
+
+    /* Dark mode variables */
+    body.dark {
+      --deep-blue: #1E3A5F;
+      --deep-blue-light: #2b4c7a;
+      --pure-white: #1E2A32;
+      --off-white: #121826;
+      --subtle-grey: #1A212E;
+      --grey-border: #2C3648;
+      --text-dark: #EDF2F7;
+      --text-muted: #A0B3CC;
+      --card-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+      --hover-shadow: 0 20px 32px -12px rgba(0, 0, 0, 0.5);
+      background-color: #121826;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* Navbar */
+    .navbar {
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid var(--grey-border);
+      margin-bottom: 24px;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--deep-blue) 0%, #2C6E9E 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .dark .logo h1 {
+      background: linear-gradient(135deg, #C0E0FF, #80B5E0);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .darkmode-toggle {
+      background: var(--pure-white);
+      border: 1px solid var(--grey-border);
+      border-radius: 40px;
+      padding: 10px 18px;
+      cursor: pointer;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      color: var(--text-dark);
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    .darkmode-toggle i {
+      font-size: 1.1rem;
+    }
+
+    .darkmode-toggle:hover {
+      transform: scale(0.97);
+      background: var(--subtle-grey);
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 56px 0 40px;
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--deep-blue);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .dark .hero h2 {
+      color: #D9E8FF;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 600;
+      margin: 48px 0 32px 0;
+      letter-spacing: -0.01em;
+      border-left: 5px solid var(--deep-blue);
+      padding-left: 20px;
+      color: var(--text-dark);
+    }
+
+    /* Service Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      margin: 24px 0 40px;
+    }
+
+    .service-card {
+      background: var(--pure-white);
+      border-radius: 28px;
+      padding: 28px 20px 24px;
+      transition: var(--transition);
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--grey-border);
+      backdrop-filter: blur(0px);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--hover-shadow);
+    }
+
+    .card-icon {
+      background: rgba(11, 43, 75, 0.08);
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: var(--deep-blue);
+      transition: var(--transition);
+    }
+
+    .dark .card-icon {
+      background: rgba(30, 58, 95, 0.5);
+      color: #9bc0f0;
+    }
+
+    .service-card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text-dark);
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .contact-wa-btn {
+      background: var(--deep-blue);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 12px 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+      justify-content: center;
+      font-family: 'Hind Siliguri', sans-serif;
+      text-decoration: none;
+    }
+
+    .contact-wa-btn i {
+      font-size: 1.2rem;
+    }
+
+    .contact-wa-btn:hover {
+      background: var(--deep-blue-light);
+      transform: scale(0.97);
+      gap: 14px;
+    }
+
+    /* Location Section */
+    .location-section {
+      background: var(--pure-white);
+      border-radius: 32px;
+      padding: 36px 32px;
+      margin: 48px 0 40px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--grey-border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .location-info {
+      flex: 2;
+    }
+
+    .location-info h3 {
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--deep-blue);
+    }
+
+    .location-info p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    .map-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--deep-blue);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    .map-link-btn:hover {
+      background: var(--deep-blue-light);
+      transform: translateY(-3px);
+    }
+
+    .location-map-icon {
+      flex: 1;
+      text-align: right;
+      font-size: 4rem;
+      color: var(--deep-blue);
+      opacity: 0.7;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--grey-border);
+      padding: 32px 0 40px;
+      margin-top: 30px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .footer a {
+      color: var(--deep-blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Floating WhatsApp */
+    .floating-wa {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease;
+      z-index: 1000;
+      text-decoration: none;
+    }
+
+    .floating-wa:hover {
+      transform: scale(1.07);
+      background-color: #20b859;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Responsive */
+    @media (max-width: 780px) {
+      .container {
+        padding: 0 20px;
+      }
+      .hero h2 {
+        font-size: 2rem;
+      }
+      .section-title {
+        font-size: 1.6rem;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .location-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      .location-map-icon {
+        text-align: center;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h2 {
+        font-size: 1.7rem;
+      }
+      .service-card h3 {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Navbar with Dark Mode Toggle -->
+  <div class="navbar">
+    <div class="logo">
+      <h1><i class="fas fa-store"></i> কাজী স্টোর</h1>
+    </div>
+    <button class="darkmode-toggle" id="darkModeToggle" aria-label="ডার্ক মোড">
+      <i class="fas fa-moon"></i> <span>ডার্ক মোড</span>
+    </button>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h2>কাজী স্টোর - আপনার বিশ্বস্ত ডিজিটাল সার্ভিস পয়েন্ট</h2>
+    <p>দ্রুত, নিরাপদ ও ঝামেলামুক্ত ডিজিটাল সমাধান — এমএফএস লেনদেন থেকে ডকুমেন্ট সার্ভিস, সবই এক ছাদের নিচে।</p>
+  </div>
+
+  <!-- Services Section -->
+  <div class="section-title">
+    <i class="fas fa-cogs" style="margin-right: 12px;"></i> আমাদের প্রিমিয়াম সার্ভিসসমূহ
+  </div>
+  <div id="servicesGrid" class="services-grid">
+    <!-- Dynamic service cards injected via JS -->
+  </div>
+
+  <!-- Location Section with Google Maps Link -->
+  <div class="location-section">
+    <div class="location-info">
+      <h3><i class="fas fa-map-pin"></i> আমাদের দোকান দেখুন</h3>
+      <p>📍 বাড়ি ১২, রোড ০৩, ব্লক ডি, বাশুন্ধরা আর/এ, ঢাকা - ১২২৯<br>
+      ⏰ শনি–বৃহস্পতি: সকাল ১০টা – রাত ৯টা | শুক্রবার: বিকাল ২টা – রাত ৮টা</p>
+      <a class="map-link-btn" href="https://maps.app.goo.gl/MpB5mGQCXZtGm6b77" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-directions"></i> গুগল ম্যাপে দেখুন
+      </a>
+    </div>
+    <div class="location-map-icon">
+      <i class="fas fa-map-marked-alt"></i>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>© ২০২৫ কাজী স্টোর — সর্বস্বত্ব সংরক্ষিত। <br> 
+      <i class="fas fa-phone-alt"></i> হটলাইন: ০১৯৬০ ৫২৩০৫২ &nbsp;|&nbsp; 
+      <i class="fas fa-envelope"></i> support@kazistore.com
+    </p>
+    <p style="margin-top: 12px;">💡 যেকোনো সার্ভিস কার্ডে ‘যোগাযোগ’ বাটনে ক্লিক করুন, সরাসরি হোয়াটসঅ্যাপে প্রি-ফিলড মেসেজ যাবে।</p>
+  </div>
+</div>
+
+<!-- Floating WhatsApp Quick Action -->
+<a href="https://wa.me/8801960523052?text=হ্যালো%20কাজী%20স্টোর%2C%20আমি%20আপনার%20সার্ভিসগুলো%20সম্পর্কে%20বিস্তারিত%20জানতে%20চাই।" 
+   class="floating-wa" target="_blank" rel="noopener noreferrer" aria-label="হোয়াটসঅ্যাপে যোগাযোগ">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+  // All services data in Bengali (Title, Description, WhatsApp prefilled message)
+  const servicesList = [
+    {
+      id: 1,
+      title: "এমএফএস ক্যাশ-ইন ও ক্যাশ-আউট",
+      desc: "বিকাশ, নগদ, রকেট — তাৎক্ষণিক জমা ও উত্তোলন।",
+      icon: "fas fa-money-bill-wave",
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার এমএফএস (বিকাশ/নগদ/রকেট) ক্যাশ-ইন ও ক্যাশ-আউট সার্ভিসে আগ্রহী।"
+    },
+    {
+      id: 2,
+      title: "মোবাইল রিচার্জ",
+      desc: "সকল অপারেটর (গ্রামীণ, রবি, বাংলালিংক, টেলিটক, এয়ারটেল)।",
+      icon: "fas fa-mobile-alt",
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার মোবাইল রিচার্জ সার্ভিসে আগ্রহী (সকল অপারেটর)।"
+    },
+    {
+      id: 3,
+      title: "নতুন সিম ও সিম রিপ্লেসমেন্ট",
+      desc: "সিম রেজিস্ট্রেশন, ডুপ্লিকেট সিম, নাম্বার পোর্টেবিলিটি সহায়তা।",
+      icon: "fas fa-sim-card",
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার নতুন সিম ও সিম রিপ্লেসমেন্ট সার্ভিসে আগ্রহী।"
+    },
+    {
+      id: 4,
+      title: "ইউনিভার্সিটি/কলেজ ভর্তি ও ফি প্রদান",
+      desc: "ভর্তি ফর্ম পূরণ, টিউশন ফি, হল চার্জ পরিশোধ।",
+      icon: "fas fa-graduation-cap",
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ইউনিভার্সিটি/কলেজ ভর্তি ও ফি প্রদান সার্ভিসে আগ্রহী।"
+    },
+    {
+      id: 5,
+      title: "ইউটিলিটি বিল",
+      desc: "বিদ্যুৎ, গ্যাস, ইন্টারনেট, ওয়াসা — তাৎক্ষণিক পরিশোধ।",
+      icon: "fas fa-bolt",
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ইউটিলিটি বিল (বিদ্যুৎ/গ্যাস/ইন্টারনেট) পরিশোধ সার্ভিসে আগ্রহী।"
+    },
+    {
+      id: 6,
+      title: "ছবি প্রিন্ট ও পাসপোর্ট ছবি",
+      desc: "উচ্চমানের প্রিন্ট, আইডি ছবি প্রফেশনাল রিটাচ সহ।",
+      icon: "fas fa-camera",
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ছবি প্রিন্টিং ও পাসপোর্ট ছবি সার্ভিসে আগ্রহী।"
+    },
+    {
+      id: 7,
+      title: "ডকুমেন্ট কম্পোজিং ও বায়োডাটা",
+      desc: "সিভি/রেজুমি তৈরি, বায়োডাটা, আবেদনপত্র রচনা।",
+      icon: "fas fa-file-alt",
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ডকুমেন্ট কম্পোজিং ও বায়োডাটা ক্রিয়েশন সার্ভিসে আগ্রহী।"
+    },
+    {
+      id: 8,
+      title: "লেমিনেটিং ও ফটোকপি",
+      desc: "দ্রুত ফটোকপি, লেমিনেটিং, স্পাইরাল বাইন্ডিং।",
+      icon: "fas fa-print",
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার লেমিনেটিং ও ফটোকপি সার্ভিসে আগ্রহী।"
+    },
+    {
+      id: 9,
+      title: "অনলাইন জিডি ও ট্রাফিক জরিমানা পরিশোধ",
+      desc: "জেনারেল ডায়েরি (অনলাইন), ট্রাফিক জরিমানা পরিশোধে সহায়তা।",
+      icon: "fas fa-gavel",
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার অনলাইন জিডি (জেনারেল ডায়েরি) ও ট্রাফিক জরিমানা পরিশোধ সার্ভিসে আগ্রহী।"
+    },
+    {
+      id: 10,
+      title: "এমএফএস অ্যাকাউন্ট খোলা",
+      desc: "বিকাশ, নগদ, রকেট অ্যাকাউন্ট খোলা ও সাপোর্ট।",
+      icon: "fas fa-user-plus",
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার এমএফএস অ্যাকাউন্ট খোলার সার্ভিসে আগ্রহী।"
+    },
+    {
+      id: 11,
+      title: "জন্ম নিবন্ধন সংশোধন",
+      desc: "নাম/জন্মতারিখ সংশোধন, অনলাইন করেকশন ও ডেলিভারি ট্র্যাকিং।",
+      icon: "fas fa-id-card",
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার জন্ম নিবন্ধন সংশোধন সার্ভিসে আগ্রহী।"
+    }
+  ];
+
+  const storePhone = "8801960523052";
+
+  // Helper: encode message for WhatsApp
+  function getWhatsAppLink(phone, message) {
+    const encodedMsg = encodeURIComponent(message);
+    return `https://wa.me/${phone}?text=${encodedMsg}`;
+  }
+
+  // Render service cards dynamically
+  function renderServices() {
+    const gridContainer = document.getElementById('servicesGrid');
+    if (!gridContainer) return;
+
+    let cardsHTML = '';
+    for (let service of servicesList) {
+      const waLink = getWhatsAppLink(storePhone, service.waMessage);
+      cardsHTML += `
+        <div class="service-card">
+          <div class="card-icon">
+            <i class="${service.icon}"></i>
+          </div>
+          <h3>${service.title}</h3>
+          <div class="service-desc">${service.desc}</div>
+          <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="contact-wa-btn">
+            <i class="fab fa-whatsapp"></i> হোয়াটসঅ্যাপে যোগাযোগ
+          </a>
+        </div>
+      `;
+    }
+    gridContainer.innerHTML = cardsHTML;
+  }
+
+  // DARK MODE TOGGLE with persistence
+  const darkModeToggle = document.getElementById('darkModeToggle');
+
+  function setDarkMode(enableDark) {
+    if (enableDark) {
+      document.body.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      if (darkModeToggle) {
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> <span>লাইট মোড</span>';
+      }
+    } else {
+      document.body.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      if (darkModeToggle) {
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> <span>ডার্ক মোড</span>';
+      }
+    }
+  }
+
+  function initDarkMode() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      setDarkMode(true);
+    } else if (savedTheme === 'light') {
+      setDarkMode(false);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setDarkMode(prefersDark);
+    }
+  }
+
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', () => {
+      const isDark = document.body.classList.contains('dark');
+      setDarkMode(!isDark);
+    });
+  }
+
+  // Initialize on load
+  document.addEventListener('DOMContentLoaded', () => {
+    renderServices();
+    initDarkMode();
+    console.log("কাজী স্টোর ওয়েবসাইট প্রস্তুত — হোয়াটসঅ্যাপ প্রি-ফিলড মেসেজ ফিচার সক্রিয়");
+  });
+
+  // Optional: listen to system preference changes if no manual override
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      setDarkMode(e.matches);
+    }
+  });
+</script>
+</body>
+</html>
