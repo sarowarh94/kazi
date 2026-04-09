@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>কাজী স্টোর | ডিজিটাল সার্ভিস পয়েন্ট</title>
-  <!-- Google Fonts: Hind Siliguri + Font Awesome 6 -->
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>কাজী স্টোর | MFS এজেন্ট পয়েন্ট</title>
+  <!-- Google Fonts: Hind Siliguri + Barlow -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -26,6 +26,10 @@
       --card-shadow: 0 12px 28px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
       --hover-shadow: 0 20px 32px -12px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(11, 43, 75, 0.08);
       --transition: all 0.25s ease;
+      --mfs-green: #00A65A;
+      --bkash-pink: #E2136E;
+      --nagad-orange: #F26522;
+      --rocket-purple: #7C2AE8;
     }
 
     body {
@@ -33,28 +37,28 @@
       background-color: var(--off-white);
       color: var(--text-dark);
       line-height: 1.5;
-      transition: background-color 0.3s ease, color 0.2s ease;
-    }
-
-    /* Dark mode variables */
-    body.dark {
-      --deep-blue: #1E3A5F;
-      --deep-blue-light: #2b4c7a;
-      --pure-white: #1E2A32;
-      --off-white: #121826;
-      --subtle-grey: #1A212E;
-      --grey-border: #2C3648;
-      --text-dark: #EDF2F7;
-      --text-muted: #A0B3CC;
-      --card-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
-      --hover-shadow: 0 20px 32px -12px rgba(0, 0, 0, 0.5);
-      background-color: #121826;
+      overflow-x: hidden;
     }
 
     .container {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 28px;
+      padding: 0 24px;
+    }
+
+    /* ----- ANIMATION STYLES ----- */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Stagger children inside grid? We'll handle individually */
+    .service-card.animate-on-scroll {
+      transition-delay: 0.05s;
     }
 
     /* Navbar */
@@ -66,7 +70,7 @@
       flex-wrap: wrap;
       gap: 16px;
       border-bottom: 1px solid var(--grey-border);
-      margin-bottom: 24px;
+      margin-bottom: 16px;
     }
 
     .logo h1 {
@@ -79,65 +83,87 @@
       color: transparent;
     }
 
-    .dark .logo h1 {
-      background: linear-gradient(135deg, #C0E0FF, #80B5E0);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
+    /* MFS Badges */
+    .mfs-badges {
+      display: flex;
+      gap: 12px;
+      align-items: center;
     }
-
-    .darkmode-toggle {
+    .badge {
       background: var(--pure-white);
-      border: 1px solid var(--grey-border);
       border-radius: 40px;
-      padding: 10px 18px;
-      cursor: pointer;
-      font-weight: 500;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 0.9rem;
-      transition: var(--transition);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      color: var(--text-dark);
-      font-family: 'Hind Siliguri', sans-serif;
+      gap: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid var(--grey-border);
     }
-
-    .darkmode-toggle i {
-      font-size: 1.1rem;
+    .badge i {
+      font-size: 1rem;
     }
-
-    .darkmode-toggle:hover {
-      transform: scale(0.97);
-      background: var(--subtle-grey);
-    }
+    .badge.bkash i { color: var(--bkash-pink); }
+    .badge.nagad i { color: var(--nagad-orange); }
+    .badge.rocket i { color: var(--rocket-purple); }
 
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 56px 0 40px;
-    }
-
-    .hero h2 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--deep-blue);
-      line-height: 1.2;
+      padding: 48px 0 32px;
+      background: linear-gradient(135deg, rgba(11,43,75,0.02) 0%, rgba(0,166,90,0.03) 100%);
+      border-radius: 40px;
       margin-bottom: 20px;
     }
-
-    .dark .hero h2 {
-      color: #D9E8FF;
+    .hero h2 {
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
     }
-
+    .hero .brand-large {
+      font-size: 2.8rem;
+      display: inline-block;
+      color: var(--deep-blue);
+      letter-spacing: -0.02em;
+    }
+    .hero .brand-sub {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--mfs-green);
+      display: block;
+      margin-top: 8px;
+    }
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
       max-width: 680px;
-      margin: 0 auto;
+      margin: 16px auto 0;
+    }
+    .mfs-highlight {
+      background: var(--pure-white);
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 32px;
+      padding: 16px 24px;
+      border-radius: 80px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--grey-border);
+    }
+    .mfs-highlight span {
+      font-weight: 600;
+      color: var(--deep-blue);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mfs-highlight i {
+      font-size: 1.3rem;
     }
 
+    /* Section title */
     .section-title {
       font-size: 1.9rem;
       font-weight: 600;
@@ -151,74 +177,67 @@
     /* Service Grid */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
       margin: 24px 0 40px;
     }
 
     .service-card {
       background: var(--pure-white);
       border-radius: 28px;
-      padding: 28px 20px 24px;
+      padding: 24px 18px 22px;
       transition: var(--transition);
       box-shadow: var(--card-shadow);
       border: 1px solid var(--grey-border);
-      backdrop-filter: blur(0px);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
     }
-
     .service-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
       box-shadow: var(--hover-shadow);
     }
-
+    .service-card.mfs-featured {
+      border-left: 4px solid var(--mfs-green);
+    }
     .card-icon {
       background: rgba(11, 43, 75, 0.08);
-      width: 58px;
-      height: 58px;
+      width: 54px;
+      height: 54px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 20px;
-      margin-bottom: 20px;
-      font-size: 2rem;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      font-size: 1.8rem;
       color: var(--deep-blue);
-      transition: var(--transition);
     }
-
-    .dark .card-icon {
-      background: rgba(30, 58, 95, 0.5);
-      color: #9bc0f0;
-    }
-
     .service-card h3 {
-      font-size: 1.4rem;
-      font-weight: 600;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
       margin-bottom: 12px;
       color: var(--text-dark);
     }
-
     .service-desc {
       font-size: 0.9rem;
       color: var(--text-muted);
-      margin-bottom: 24px;
-      line-height: 1.4;
+      margin-bottom: 22px;
+      line-height: 1.45;
       flex-grow: 1;
     }
-
     .contact-wa-btn {
       background: var(--deep-blue);
       color: white;
       border: none;
       border-radius: 40px;
-      padding: 12px 20px;
+      padding: 12px 16px;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       cursor: pointer;
       transition: var(--transition);
       width: 100%;
@@ -226,22 +245,17 @@
       font-family: 'Hind Siliguri', sans-serif;
       text-decoration: none;
     }
-
-    .contact-wa-btn i {
-      font-size: 1.2rem;
-    }
-
     .contact-wa-btn:hover {
       background: var(--deep-blue-light);
       transform: scale(0.97);
-      gap: 14px;
+      gap: 12px;
     }
 
     /* Location Section */
     .location-section {
       background: var(--pure-white);
-      border-radius: 32px;
-      padding: 36px 32px;
+      border-radius: 28px;
+      padding: 30px 24px;
       margin: 48px 0 40px;
       box-shadow: var(--card-shadow);
       border: 1px solid var(--grey-border);
@@ -249,52 +263,47 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 30px;
+      gap: 24px;
     }
-
     .location-info {
       flex: 2;
     }
-
     .location-info h3 {
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       margin-bottom: 12px;
       font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       color: var(--deep-blue);
     }
-
     .location-info p {
       color: var(--text-muted);
-      margin-bottom: 20px;
-      font-size: 1rem;
+      margin-bottom: 18px;
+      font-size: 0.95rem;
     }
-
     .map-link-btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       background: var(--deep-blue);
       color: white;
-      padding: 12px 28px;
+      padding: 10px 22px;
       border-radius: 40px;
       text-decoration: none;
       font-weight: 500;
       transition: var(--transition);
       font-family: 'Hind Siliguri', sans-serif;
+      font-size: 0.9rem;
     }
-
     .map-link-btn:hover {
       background: var(--deep-blue-light);
-      transform: translateY(-3px);
+      transform: translateY(-2px);
     }
-
     .location-map-icon {
       flex: 1;
       text-align: right;
-      font-size: 4rem;
+      font-size: 3.5rem;
       color: var(--deep-blue);
       opacity: 0.7;
     }
@@ -302,19 +311,17 @@
     /* Footer */
     .footer {
       border-top: 1px solid var(--grey-border);
-      padding: 32px 0 40px;
-      margin-top: 30px;
+      padding: 28px 0 36px;
+      margin-top: 20px;
       text-align: center;
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
-
     .footer a {
       color: var(--deep-blue);
       text-decoration: none;
       font-weight: 500;
     }
-
     .footer a:hover {
       text-decoration: underline;
     }
@@ -322,42 +329,54 @@
     /* Floating WhatsApp */
     .floating-wa {
       position: fixed;
-      bottom: 28px;
-      right: 28px;
+      bottom: 24px;
+      right: 24px;
       background-color: #25D366;
       color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 60px;
+      width: 56px;
+      height: 56px;
+      border-radius: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      font-size: 1.8rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
       transition: all 0.2s ease;
       z-index: 1000;
       text-decoration: none;
     }
-
     .floating-wa:hover {
-      transform: scale(1.07);
+      transform: scale(1.05);
       background-color: #20b859;
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
     }
 
-    /* Responsive */
-    @media (max-width: 780px) {
+    /* Mobile responsive */
+    @media (max-width: 680px) {
       .container {
-        padding: 0 20px;
+        padding: 0 18px;
       }
-      .hero h2 {
+      .hero .brand-large {
         font-size: 2rem;
+      }
+      .hero .brand-sub {
+        font-size: 1.3rem;
+      }
+      .hero p {
+        font-size: 0.95rem;
+      }
+      .mfs-highlight {
+        flex-direction: column;
+        gap: 12px;
+        border-radius: 32px;
+        align-items: center;
       }
       .section-title {
         font-size: 1.6rem;
+        margin: 32px 0 24px;
       }
       .services-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
       .location-section {
         flex-direction: column;
@@ -370,14 +389,17 @@
         flex-direction: column;
         align-items: flex-start;
       }
+      .mfs-badges {
+        width: 100%;
+        justify-content: space-between;
+      }
     }
-
     @media (max-width: 480px) {
-      .hero h2 {
+      .hero .brand-large {
         font-size: 1.7rem;
       }
-      .service-card h3 {
-        font-size: 1.25rem;
+      .hero .brand-sub {
+        font-size: 1.1rem;
       }
     }
   </style>
@@ -385,36 +407,46 @@
 <body>
 
 <div class="container">
-  <!-- Navbar with Dark Mode Toggle -->
-  <div class="navbar">
+  <!-- Navbar with MFS brand badges (animated) -->
+  <div class="navbar animate-on-scroll">
     <div class="logo">
       <h1><i class="fas fa-store"></i> কাজী স্টোর</h1>
     </div>
-    <button class="darkmode-toggle" id="darkModeToggle" aria-label="ডার্ক মোড">
-      <i class="fas fa-moon"></i> <span>ডার্ক মোড</span>
-    </button>
+    <div class="mfs-badges">
+      <div class="badge bkash"><i class="fab fa-buffer"></i> বিকাশ</div>
+      <div class="badge nagad"><i class="fas fa-charging-station"></i> নগদ</div>
+      <div class="badge rocket"><i class="fas fa-rocket"></i> রকেট</div>
+    </div>
   </div>
 
-  <!-- Hero Section -->
-  <div class="hero">
-    <h2>কাজী স্টোর - আপনার বিশ্বস্ত ডিজিটাল সার্ভিস পয়েন্ট</h2>
-    <p>দ্রুত, নিরাপদ ও ঝামেলামুক্ত ডিজিটাল সমাধান — এমএফএস লেনদেন থেকে ডকুমেন্ট সার্ভিস, সবই এক ছাদের নিচে।</p>
+  <!-- Hero Section: MFS Business Focus -->
+  <div class="hero animate-on-scroll">
+    <h2>
+      <span class="brand-large">কাজী স্টোর</span>
+      <span class="brand-sub">MFS প্রতিষ্ঠান হবে</span>
+    </h2>
+    <p>দ্রুত, নিরাপদ ও ঝামেলামুক্ত ডিজিটাল লেনদেন — বিকাশ, নগদ, রকেট ক্যাশ ইন/আউট, মোবাইল রিচার্জ, বিল পেমেন্ট ও আরও অনেক কিছু</p>
+    <div class="mfs-highlight">
+      <span><i class="fas fa-exchange-alt" style="color: var(--mfs-green);"></i> তাৎক্ষণিক লেনদেন</span>
+      <span><i class="fas fa-shield-alt" style="color: var(--deep-blue);"></i> নিরাপদ ও বিশ্বস্ত</span>
+      <span><i class="fas fa-clock" style="color: var(--mfs-green);"></i> সকাল ৭টা – রাত ১১টা</span>
+    </div>
   </div>
 
   <!-- Services Section -->
-  <div class="section-title">
-    <i class="fas fa-cogs" style="margin-right: 12px;"></i> আমাদের প্রিমিয়াম সার্ভিসসমূহ
+  <div class="section-title animate-on-scroll">
+    <i class="fas fa-cogs" style="margin-right: 12px;"></i> আমাদের সার্ভিসসমূহ
   </div>
   <div id="servicesGrid" class="services-grid">
-    <!-- Dynamic service cards injected via JS -->
+    <!-- Dynamic service cards injected via JS, each will have animate-on-scroll class -->
   </div>
 
-  <!-- Location Section with Google Maps Link -->
-  <div class="location-section">
+  <!-- Location Section -->
+  <div class="location-section animate-on-scroll">
     <div class="location-info">
-      <h3><i class="fas fa-map-pin"></i> আমাদের দোকান দেখুন</h3>
+      <h3><i class="fas fa-map-pin"></i> আমাদের এজেন্ট পয়েন্ট</h3>
       <p>📍 বাড়ি ১২, রোড ০৩, ব্লক ডি, বাশুন্ধরা আর/এ, ঢাকা - ১২২৯<br>
-      ⏰ শনি–বৃহস্পতি: সকাল ১০টা – রাত ৯টা | শুক্রবার: বিকাল ২টা – রাত ৮টা</p>
+      ⏰ শনি–বৃহস্পতি: সকাল ৭টা – রাত ১১টা | শুক্রবার: বিকাল ২টা – রাত ১১টা</p>
       <a class="map-link-btn" href="https://maps.app.goo.gl/MpB5mGQCXZtGm6b77" target="_blank" rel="noopener noreferrer">
         <i class="fas fa-directions"></i> গুগল ম্যাপে দেখুন
       </a>
@@ -425,112 +457,121 @@
   </div>
 
   <!-- Footer -->
-  <div class="footer">
-    <p>© ২০২৫ কাজী স্টোর — সর্বস্বত্ব সংরক্ষিত। <br> 
+  <div class="footer animate-on-scroll">
+    <p>© ২০২৫ কাজী স্টোর — এমএফএস এজেন্ট ও ডিজিটাল সার্ভিস সেন্টার <br> 
       <i class="fas fa-phone-alt"></i> হটলাইন: ০১৯৬০ ৫২৩০৫২ &nbsp;|&nbsp; 
       <i class="fas fa-envelope"></i> support@kazistore.com
     </p>
-    <p style="margin-top: 12px;">💡 যেকোনো সার্ভিস কার্ডে ‘যোগাযোগ’ বাটনে ক্লিক করুন, সরাসরি হোয়াটসঅ্যাপে প্রি-ফিলড মেসেজ যাবে।</p>
+    <p style="margin-top: 10px;">💡 প্রতিটি সার্ভিসের জন্য 'যোগাযোগ' বাটনে ক্লিক করে সরাসরি হোয়াটসঅ্যাপে প্রি-ফিলড মেসেজ পাঠান।</p>
   </div>
 </div>
 
 <!-- Floating WhatsApp Quick Action -->
-<a href="https://wa.me/8801960523052?text=হ্যালো%20কাজী%20স্টোর%2C%20আমি%20আপনার%20সার্ভিসগুলো%20সম্পর্কে%20বিস্তারিত%20জানতে%20চাই।" 
+<a href="https://wa.me/8801960523052?text=হ্যালো%20কাজী%20স্টোর%2C%20আমি%20আপনার%20এমএফএস%20সার্ভিসগুলো%20সম্পর্কে%20জানতে%20চাই।" 
    class="floating-wa" target="_blank" rel="noopener noreferrer" aria-label="হোয়াটসঅ্যাপে যোগাযোগ">
   <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
-  // All services data in Bengali (Title, Description, WhatsApp prefilled message)
+  // Service data: English headlines (Barlow font), Bengali descriptions, MFS first card featured
   const servicesList = [
     {
       id: 1,
-      title: "এমএফএস ক্যাশ-ইন ও ক্যাশ-আউট",
-      desc: "বিকাশ, নগদ, রকেট — তাৎক্ষণিক জমা ও উত্তোলন।",
+      titleEnglish: "MFS Cash-in & Cash-out",
+      descBengali: "বিকাশ, নগদ, রকেট — তাৎক্ষণিক পাঠানো ও উত্তোলন। ২৪/৭ সেবা।",
       icon: "fas fa-money-bill-wave",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার এমএফএস (বিকাশ/নগদ/রকেট) ক্যাশ-ইন ও ক্যাশ-আউট সার্ভিসে আগ্রহী।"
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার MFS (বিকাশ/নগদ/রকেট) ক্যাশ-ইন ও ক্যাশ-আউট সার্ভিসে আগ্রহী।",
+      featured: true
     },
     {
       id: 2,
-      title: "মোবাইল রিচার্জ",
-      desc: "সকল অপারেটর (গ্রামীণ, রবি, বাংলালিংক, টেলিটক, এয়ারটেল)।",
+      titleEnglish: "Mobile Recharge",
+      descBengali: "সকল অপারেটর (গ্রামীণ, রবি, বাংলালিংক, টেলিটক, এয়ারটেল) — তাৎক্ষণিক রিচার্জ।",
       icon: "fas fa-mobile-alt",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার মোবাইল রিচার্জ সার্ভিসে আগ্রহী (সকল অপারেটর)।"
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার মোবাইল রিচার্জ সার্ভিসে আগ্রহী (সকল অপারেটর)।",
+      featured: false
     },
     {
       id: 3,
-      title: "নতুন সিম ও সিম রিপ্লেসমেন্ট",
-      desc: "সিম রেজিস্ট্রেশন, ডুপ্লিকেট সিম, নাম্বার পোর্টেবিলিটি সহায়তা।",
+      titleEnglish: "SIM Service (Lost/Damaged)",
+      descBengali: "হারানো সিম উঠানো যায় এবং নষ্ট সিম নতুন ভাবে তোলা যায়।", 
       icon: "fas fa-sim-card",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার নতুন সিম ও সিম রিপ্লেসমেন্ট সার্ভিসে আগ্রহী।"
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার সিম সার্ভিস (হারানো/নষ্ট সিম প্রতিস্থাপন) সম্পর্কে আগ্রহী।",
+      featured: false
     },
     {
       id: 4,
-      title: "ইউনিভার্সিটি/কলেজ ভর্তি ও ফি প্রদান",
-      desc: "ভর্তি ফর্ম পূরণ, টিউশন ফি, হল চার্জ পরিশোধ।",
+      titleEnglish: "Admission & Fees Payment",
+      descBengali: "ভর্তি ফর্ম পূরণ, টিউশন ফি, হল চার্জ পরিশোধ (ইউনিভার্সিটি/কলেজ)।",
       icon: "fas fa-graduation-cap",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ইউনিভার্সিটি/কলেজ ভর্তি ও ফি প্রদান সার্ভিসে আগ্রহী।"
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ইউনিভার্সিটি/কলেজ ভর্তি ও ফি প্রদান সার্ভিসে আগ্রহী।",
+      featured: false
     },
     {
       id: 5,
-      title: "ইউটিলিটি বিল",
-      desc: "বিদ্যুৎ, গ্যাস, ইন্টারনেট, ওয়াসা — তাৎক্ষণিক পরিশোধ।",
+      titleEnglish: "Utility Bills",
+      descBengali: "বিদ্যুৎ, গ্যাস, ইন্টারনেট, ওয়াসা — তাৎক্ষণিক বিল পরিশোধ।",
       icon: "fas fa-bolt",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ইউটিলিটি বিল (বিদ্যুৎ/গ্যাস/ইন্টারনেট) পরিশোধ সার্ভিসে আগ্রহী।"
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ইউটিলিটি বিল (বিদ্যুৎ/গ্যাস/ইন্টারনেট) পরিশোধ সার্ভিসে আগ্রহী।",
+      featured: false
     },
     {
       id: 6,
-      title: "ছবি প্রিন্ট ও পাসপোর্ট ছবি",
-      desc: "উচ্চমানের প্রিন্ট, আইডি ছবি প্রফেশনাল রিটাচ সহ।",
+      titleEnglish: "Photo Printing & Passport",
+      descBengali: "উচ্চমানের প্রিন্ট, আইডি ছবি প্রফেশনাল রিটাচ সহ পাসপোর্ট ছবি।",
       icon: "fas fa-camera",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ছবি প্রিন্টিং ও পাসপোর্ট ছবি সার্ভিসে আগ্রহী।"
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ছবি প্রিন্টিং ও পাসপোর্ট ছবি সার্ভিসে আগ্রহী।",
+      featured: false
     },
     {
       id: 7,
-      title: "ডকুমেন্ট কম্পোজিং ও বায়োডাটা",
-      desc: "সিভি/রেজুমি তৈরি, বায়োডাটা, আবেদনপত্র রচনা।",
+      titleEnglish: "Document Composing & Bio-data",
+      descBengali: "সিভি/রেজুমি তৈরি, বায়োডাটা, আবেদনপত্র রচনা ও কম্পোজিং।",
       icon: "fas fa-file-alt",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ডকুমেন্ট কম্পোজিং ও বায়োডাটা ক্রিয়েশন সার্ভিসে আগ্রহী।"
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ডকুমেন্ট কম্পোজিং ও বায়োডাটা ক্রিয়েশন সার্ভিসে আগ্রহী।",
+      featured: false
     },
     {
       id: 8,
-      title: "লেমিনেটিং ও ফটোকপি",
-      desc: "দ্রুত ফটোকপি, লেমিনেটিং, স্পাইরাল বাইন্ডিং।",
+      titleEnglish: "Laminating & Photocopy",
+      descBengali: "দ্রুত ফটোকপি, লেমিনেটিং, স্পাইরাল বাইন্ডিং সহ সব ধরনের প্রিন্ট সেবা।",
       icon: "fas fa-print",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার লেমিনেটিং ও ফটোকপি সার্ভিসে আগ্রহী।"
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার লেমিনেটিং ও ফটোকপি সার্ভিসে আগ্রহী।",
+      featured: false
     },
     {
       id: 9,
-      title: "অনলাইন জিডি ও ট্রাফিক জরিমানা পরিশোধ",
-      desc: "জেনারেল ডায়েরি (অনলাইন), ট্রাফিক জরিমানা পরিশোধে সহায়তা।",
+      titleEnglish: "Online GD & Traffic Fine",
+      descBengali: "জেনারেল ডায়েরি (অনলাইন), ট্রাফিক জরিমানা পরিশোধ ও সহায়তা।",
       icon: "fas fa-gavel",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার অনলাইন জিডি (জেনারেল ডায়েরি) ও ট্রাফিক জরিমানা পরিশোধ সার্ভিসে আগ্রহী।"
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার অনলাইন জিডি ও ট্রাফিক জরিমানা পরিশোধ সার্ভিসে আগ্রহী।",
+      featured: false
     },
     {
       id: 10,
-      title: "এমএফএস অ্যাকাউন্ট খোলা",
-      desc: "বিকাশ, নগদ, রকেট অ্যাকাউন্ট খোলা ও সাপোর্ট।",
+      titleEnglish: "MFS Account Opening",
+      descBengali: "বিকাশ, নগদ, রকেট অ্যাকাউন্ট খোলা ও পূর্ণ সাপোর্ট।",
       icon: "fas fa-user-plus",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার এমএফএস অ্যাকাউন্ট খোলার সার্ভিসে আগ্রহী।"
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার এমএফএস অ্যাকাউন্ট খোলার সার্ভিসে আগ্রহী।",
+      featured: false
     },
     {
       id: 11,
-      title: "জন্ম নিবন্ধন সংশোধন",
-      desc: "নাম/জন্মতারিখ সংশোধন, অনলাইন করেকশন ও ডেলিভারি ট্র্যাকিং।",
+      titleEnglish: "Birth Certificate Correction",
+      descBengali: "নাম/জন্মতারিখ সংশোধন, অনলাইন করেকশন ও ডেলিভারি ট্র্যাকিং।",
       icon: "fas fa-id-card",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার জন্ম নিবন্ধন সংশোধন সার্ভিসে আগ্রহী।"
+      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার জন্ম নিবন্ধন সংশোধন সার্ভিসে আগ্রহী।",
+      featured: false
     }
   ];
 
   const storePhone = "8801960523052";
 
-  // Helper: encode message for WhatsApp
   function getWhatsAppLink(phone, message) {
     const encodedMsg = encodeURIComponent(message);
     return `https://wa.me/${phone}?text=${encodedMsg}`;
   }
 
-  // Render service cards dynamically
   function renderServices() {
     const gridContainer = document.getElementById('servicesGrid');
     if (!gridContainer) return;
@@ -538,13 +579,14 @@
     let cardsHTML = '';
     for (let service of servicesList) {
       const waLink = getWhatsAppLink(storePhone, service.waMessage);
+      const featuredClass = service.featured ? 'mfs-featured' : '';
       cardsHTML += `
-        <div class="service-card">
+        <div class="service-card ${featuredClass} animate-on-scroll">
           <div class="card-icon">
             <i class="${service.icon}"></i>
           </div>
-          <h3>${service.title}</h3>
-          <div class="service-desc">${service.desc}</div>
+          <h3>${service.titleEnglish}</h3>
+          <div class="service-desc">${service.descBengali}</div>
           <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="contact-wa-btn">
             <i class="fab fa-whatsapp"></i> হোয়াটসঅ্যাপে যোগাযোগ
           </a>
@@ -554,56 +596,29 @@
     gridContainer.innerHTML = cardsHTML;
   }
 
-  // DARK MODE TOGGLE with persistence
-  const darkModeToggle = document.getElementById('darkModeToggle');
-
-  function setDarkMode(enableDark) {
-    if (enableDark) {
-      document.body.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      if (darkModeToggle) {
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> <span>লাইট মোড</span>';
-      }
-    } else {
-      document.body.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      if (darkModeToggle) {
-        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> <span>ডার্ক মোড</span>';
-      }
-    }
+  // Intersection Observer for scroll animations
+  function initScrollAnimations() {
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+          observer.unobserve(entry.target); // animate only once
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
+    
+    elements.forEach(el => observer.observe(el));
   }
 
-  function initDarkMode() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      setDarkMode(true);
-    } else if (savedTheme === 'light') {
-      setDarkMode(false);
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setDarkMode(prefersDark);
-    }
-  }
-
-  if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', () => {
-      const isDark = document.body.classList.contains('dark');
-      setDarkMode(!isDark);
-    });
-  }
-
-  // Initialize on load
+  // Also handle initial load: if some elements are already visible
   document.addEventListener('DOMContentLoaded', () => {
     renderServices();
-    initDarkMode();
-    console.log("কাজী স্টোর ওয়েবসাইট প্রস্তুত — হোয়াটসঅ্যাপ প্রি-ফিলড মেসেজ ফিচার সক্রিয়");
-  });
-
-  // Optional: listen to system preference changes if no manual override
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-      setDarkMode(e.matches);
-    }
+    // After rendering, re-query for new cards and observe them
+    setTimeout(() => {
+      initScrollAnimations();
+    }, 100);
+    console.log("কাজী স্টোর MFS বিজনেস ওয়েবসাইট প্রস্তুত — এনিমেশন ও নতুন সময়সূচী সংযোজিত");
   });
 </script>
 </body>
