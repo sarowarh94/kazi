@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>কাজী স্টোর | MFS এজেন্ট পয়েন্ট (বিকাশ প্রধান রং)</title>
+  <title>কাজী স্টোর | MFS এজেন্ট পয়েন্ট</title>
   <!-- Google Fonts: Hind Siliguri + Barlow -->
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -15,9 +15,13 @@
     }
 
     :root {
-      --bkash-pink: #E2136E;
-      --bkash-pink-dark: #C00E5E;
-      --bkash-pink-soft: rgba(226,19,110,0.08);
+      /* নতুন কালার থিম */
+      --primary: #02babd;
+      --primary-dark: #01989b;
+      --secondary: #eb2d2a;
+      --secondary-dark: #c41f1c;
+      --tertiary: #7c0085;
+      --tertiary-light: #9a1aa3;
       --deep-blue: #0B2B4B;
       --pure-white: #FFFFFF;
       --off-white: #F9FAFE;
@@ -72,7 +76,7 @@
       font-size: 1.8rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, var(--bkash-pink) 0%, var(--deep-blue) 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--tertiary) 100%);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
@@ -102,23 +106,23 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    .badge.bkash i { color: var(--bkash-pink); }
+    .badge.bkash i { color: var(--primary); }
     .badge.nagad i { color: var(--nagad-orange); }
     .badge.rocket i { color: var(--rocket-purple); }
 
-    /* Hero Section - সম্পূর্ণ নতুন রূপ */
+    /* Hero Section - নতুন থিম */
     .hero {
       text-align: center;
       padding: 48px 0 48px;
-      background: radial-gradient(circle at 10% 30%, rgba(226,19,110,0.08) 0%, rgba(226,19,110,0.02) 70%, var(--off-white) 100%);
+      background: radial-gradient(circle at 10% 30%, rgba(2,186,189,0.08) 0%, rgba(235,45,42,0.03) 70%, var(--off-white) 100%);
       border-radius: 48px;
       margin-bottom: 24px;
       position: relative;
       overflow: hidden;
       box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
-      border: 1px solid rgba(226,19,110,0.2);
+      border: 1px solid rgba(2,186,189,0.3);
     }
-    /* বিকাশ এজেন্ট কালার অ্যাড - গোলাপী আভা */
+    /* রঙিন আভা */
     .hero::after {
       content: '';
       position: absolute;
@@ -126,7 +130,7 @@
       right: -10%;
       width: 250px;
       height: 250px;
-      background: radial-gradient(circle, rgba(226,19,110,0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(2,186,189,0.15) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
     }
@@ -137,12 +141,12 @@
       left: -10%;
       width: 200px;
       height: 200px;
-      background: radial-gradient(circle, rgba(226,19,110,0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(235,45,42,0.1) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
     }
 
-    /* গ্রীন টিক মার্ক সহ এজেন্ট লাইন - উপরে */
+    /* গ্রীন টিক মার্ক সহ এজেন্ট লাইন */
     .agent-badge {
       display: inline-flex;
       align-items: center;
@@ -181,7 +185,7 @@
     .hero .brand-mfs {
       font-size: 1.4rem;
       font-weight: 600;
-      color: var(--bkash-pink);
+      color: var(--secondary);
       display: block;
       margin-top: 4px;
     }
@@ -221,7 +225,7 @@
       font-size: 1rem;
     }
     .mfs-highlight i:first-child {
-      color: var(--bkash-pink);
+      color: var(--primary);
     }
 
     /* Section title */
@@ -229,7 +233,7 @@
       font-size: 1.9rem;
       font-weight: 600;
       margin: 48px 0 32px 0;
-      border-left: 5px solid var(--bkash-pink);
+      border-left: 5px solid var(--primary);
       padding-left: 20px;
       color: var(--text-dark);
     }
@@ -255,13 +259,13 @@
     .service-card:hover {
       transform: translateY(-5px);
       box-shadow: var(--hover-shadow);
-      border-color: var(--bkash-pink);
+      border-color: var(--primary);
     }
     .service-card.mfs-featured {
-      border-left: 4px solid var(--bkash-pink);
+      border-left: 4px solid var(--primary);
     }
     .card-icon {
-      background: rgba(226,19,110,0.08);
+      background: rgba(2,186,189,0.1);
       width: 54px;
       height: 54px;
       display: flex;
@@ -270,7 +274,7 @@
       border-radius: 18px;
       margin-bottom: 18px;
       font-size: 1.8rem;
-      color: var(--bkash-pink);
+      color: var(--primary);
     }
     .service-card h3 {
       font-family: 'Barlow', sans-serif;
@@ -286,7 +290,7 @@
       flex-grow: 1;
     }
     .contact-wa-btn {
-      background: var(--bkash-pink);
+      background: var(--primary);
       color: white;
       border-radius: 40px;
       padding: 12px 16px;
@@ -301,11 +305,11 @@
       transition: var(--transition);
     }
     .contact-wa-btn:hover {
-      background: var(--bkash-pink-dark);
+      background: var(--primary-dark);
       transform: scale(0.97);
     }
 
-    /* Location */
+    /* Location Section */
     .location-section {
       background: var(--pure-white);
       border-radius: 28px;
@@ -327,12 +331,12 @@
       gap: 10px;
       color: var(--deep-blue);
     }
-    .location-info h3 i { color: var(--bkash-pink); }
+    .location-info h3 i { color: var(--primary); }
     .map-link-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--bkash-pink);
+      background: var(--primary);
       color: white;
       padding: 10px 22px;
       border-radius: 40px;
@@ -340,14 +344,14 @@
       font-weight: 500;
     }
     .map-link-btn:hover {
-      background: var(--bkash-pink-dark);
+      background: var(--primary-dark);
       transform: translateY(-2px);
     }
     .location-map-icon {
       flex: 1;
       text-align: right;
       font-size: 3.5rem;
-      color: var(--bkash-pink);
+      color: var(--primary);
       opacity: 0.7;
     }
 
@@ -359,7 +363,7 @@
       color: var(--text-muted);
       font-size: 0.8rem;
     }
-    .footer a { color: var(--bkash-pink); text-decoration: none; font-weight: 500; }
+    .footer a { color: var(--primary); text-decoration: none; font-weight: 500; }
 
     /* Floating WhatsApp */
     .floating-wa {
@@ -410,7 +414,7 @@
       width: 90%;
       padding: 28px 24px;
       box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-      border-top: 6px solid var(--bkash-pink);
+      border-top: 6px solid var(--primary);
       transform: scale(0.95);
       transition: transform 0.2s;
     }
@@ -437,18 +441,18 @@
       cursor: pointer;
       color: var(--text-muted);
     }
-    .modal-close:hover { color: var(--bkash-pink); }
+    .modal-close:hover { color: var(--secondary); }
     .modal-content p { margin-bottom: 12px; }
     .modal-content ul { margin: 12px 0 12px 20px; }
     .modal-content li { margin-bottom: 8px; }
     .info-badge {
       display: inline-block;
-      background: rgba(226,19,110,0.1);
+      background: rgba(2,186,189,0.1);
       padding: 4px 12px;
       border-radius: 30px;
       font-size: 0.75rem;
       font-weight: 600;
-      color: var(--bkash-pink);
+      color: var(--primary);
       margin-bottom: 12px;
     }
 
@@ -486,9 +490,8 @@
     </div>
   </div>
 
-  <!-- Hero Section - সম্পূর্ণ নতুন কাঠামো -->
+  <!-- Hero Section - নতুন থিম, গ্রিন টিক, ট্যাগলাইন -->
   <div class="hero animate-on-scroll">
-    <!-- গ্রিন টিক সহ অনুমোদিত এজেন্ট (উপরে) -->
     <div class="agent-badge">
       <i class="fas fa-check-circle"></i> বিকাশ-নগদ রকেট অনুমোদিত এজেন্ট
     </div>
