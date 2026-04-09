@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>কাজী স্টোর | MFS এজেন্ট পয়েন্ট</title>
+  <title>কাজী স্টোর | MFS এজেন্ট পয়েন্ট (বিকাশ প্রধান রং)</title>
   <!-- Google Fonts: Hind Siliguri + Barlow -->
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -15,8 +15,10 @@
     }
 
     :root {
+      --bkash-pink: #E2136E;
+      --bkash-pink-dark: #C00E5E;
       --deep-blue: #0B2B4B;
-      --deep-blue-light: #124a6f;
+      --deep-blue-light: #1A405F;
       --pure-white: #FFFFFF;
       --off-white: #F9FAFE;
       --subtle-grey: #F1F4F8;
@@ -26,8 +28,6 @@
       --card-shadow: 0 12px 28px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
       --hover-shadow: 0 20px 32px -12px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(11, 43, 75, 0.08);
       --transition: all 0.25s ease;
-      --mfs-green: #00A65A;
-      --bkash-pink: #E2136E;
       --nagad-orange: #F26522;
       --rocket-purple: #7C2AE8;
     }
@@ -56,10 +56,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-    /* Stagger children inside grid? We'll handle individually */
-    .service-card.animate-on-scroll {
-      transition-delay: 0.05s;
-    }
 
     /* Navbar */
     .navbar {
@@ -77,13 +73,13 @@
       font-size: 1.8rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, var(--deep-blue) 0%, #2C6E9E 100%);
+      background: linear-gradient(135deg, var(--bkash-pink) 0%, var(--deep-blue) 100%);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
     }
 
-    /* MFS Badges */
+    /* MFS Badges clickable */
     .mfs-badges {
       display: flex;
       gap: 12px;
@@ -100,57 +96,91 @@
       gap: 8px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
       border: 1px solid var(--grey-border);
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
-    .badge i {
-      font-size: 1rem;
+    .badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     .badge.bkash i { color: var(--bkash-pink); }
     .badge.nagad i { color: var(--nagad-orange); }
     .badge.rocket i { color: var(--rocket-purple); }
 
-    /* Hero Section */
+    /* Hero Section - আকর্ষণীয়, বাটন বাদ, নতুন টেক্সট */
     .hero {
       text-align: center;
-      padding: 48px 0 32px;
-      background: linear-gradient(135deg, rgba(11,43,75,0.02) 0%, rgba(0,166,90,0.03) 100%);
-      border-radius: 40px;
-      margin-bottom: 20px;
+      padding: 48px 0 40px;
+      background: linear-gradient(135deg, rgba(226,19,110,0.05) 0%, rgba(11,43,75,0.08) 100%);
+      border-radius: 48px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+      border: 1px solid rgba(226,19,110,0.2);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(226,19,110,0.03) 0%, transparent 70%);
+      animation: rotateBg 20s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes rotateBg {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
     .hero h2 {
       font-weight: 700;
       line-height: 1.2;
       margin-bottom: 16px;
+      position: relative;
+      z-index: 2;
     }
     .hero .brand-large {
-      font-size: 2.8rem;
+      font-size: 3rem;
       display: inline-block;
       color: var(--deep-blue);
       letter-spacing: -0.02em;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     .hero .brand-sub {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       font-weight: 700;
-      color: var(--mfs-green);
+      color: var(--bkash-pink);
       display: block;
       margin-top: 8px;
     }
-    .hero p {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      max-width: 680px;
-      margin: 16px auto 0;
+    .hero .agent-tagline {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--bkash-pink);
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(4px);
+      display: inline-block;
+      padding: 8px 24px;
+      border-radius: 60px;
+      margin-top: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid rgba(226,19,110,0.3);
     }
     .mfs-highlight {
       background: var(--pure-white);
       display: inline-flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 24px;
+      gap: 28px;
       margin-top: 32px;
-      padding: 16px 24px;
+      padding: 16px 28px;
       border-radius: 80px;
       box-shadow: var(--card-shadow);
       border: 1px solid var(--grey-border);
+      position: relative;
+      z-index: 2;
     }
     .mfs-highlight span {
       font-weight: 600;
@@ -158,9 +188,11 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      font-size: 1rem;
     }
-    .mfs-highlight i {
-      font-size: 1.3rem;
+    .mfs-highlight i:first-child {
+      color: var(--bkash-pink);
+      font-size: 1.2rem;
     }
 
     /* Section title */
@@ -169,7 +201,7 @@
       font-weight: 600;
       margin: 48px 0 32px 0;
       letter-spacing: -0.01em;
-      border-left: 5px solid var(--deep-blue);
+      border-left: 5px solid var(--bkash-pink);
       padding-left: 20px;
       color: var(--text-dark);
     }
@@ -196,12 +228,13 @@
     .service-card:hover {
       transform: translateY(-5px);
       box-shadow: var(--hover-shadow);
+      border-color: var(--bkash-pink);
     }
     .service-card.mfs-featured {
-      border-left: 4px solid var(--mfs-green);
+      border-left: 4px solid var(--bkash-pink);
     }
     .card-icon {
-      background: rgba(11, 43, 75, 0.08);
+      background: rgba(226,19,110,0.08);
       width: 54px;
       height: 54px;
       display: flex;
@@ -210,7 +243,7 @@
       border-radius: 18px;
       margin-bottom: 18px;
       font-size: 1.8rem;
-      color: var(--deep-blue);
+      color: var(--bkash-pink);
     }
     .service-card h3 {
       font-family: 'Barlow', sans-serif;
@@ -228,7 +261,7 @@
       flex-grow: 1;
     }
     .contact-wa-btn {
-      background: var(--deep-blue);
+      background: var(--bkash-pink);
       color: white;
       border: none;
       border-radius: 40px;
@@ -246,7 +279,7 @@
       text-decoration: none;
     }
     .contact-wa-btn:hover {
-      background: var(--deep-blue-light);
+      background: var(--bkash-pink-dark);
       transform: scale(0.97);
       gap: 12px;
     }
@@ -265,9 +298,6 @@
       justify-content: space-between;
       gap: 24px;
     }
-    .location-info {
-      flex: 2;
-    }
     .location-info h3 {
       font-size: 1.5rem;
       margin-bottom: 12px;
@@ -277,16 +307,14 @@
       gap: 10px;
       color: var(--deep-blue);
     }
-    .location-info p {
-      color: var(--text-muted);
-      margin-bottom: 18px;
-      font-size: 0.95rem;
+    .location-info h3 i {
+      color: var(--bkash-pink);
     }
     .map-link-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--deep-blue);
+      background: var(--bkash-pink);
       color: white;
       padding: 10px 22px;
       border-radius: 40px;
@@ -297,14 +325,14 @@
       font-size: 0.9rem;
     }
     .map-link-btn:hover {
-      background: var(--deep-blue-light);
+      background: var(--bkash-pink-dark);
       transform: translateY(-2px);
     }
     .location-map-icon {
       flex: 1;
       text-align: right;
       font-size: 3.5rem;
-      color: var(--deep-blue);
+      color: var(--bkash-pink);
       opacity: 0.7;
     }
 
@@ -318,7 +346,7 @@
       font-size: 0.8rem;
     }
     .footer a {
-      color: var(--deep-blue);
+      color: var(--bkash-pink);
       text-decoration: none;
       font-weight: 500;
     }
@@ -350,19 +378,107 @@
       background-color: #20b859;
     }
 
-    /* Mobile responsive */
+    /* MODAL STYLES */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.2s, opacity 0.2s;
+    }
+    .modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .modal-container {
+      background: var(--pure-white);
+      border-radius: 32px;
+      max-width: 480px;
+      width: 90%;
+      padding: 28px 24px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      position: relative;
+      transform: scale(0.95);
+      transition: transform 0.2s ease;
+      border-top: 6px solid var(--bkash-pink);
+    }
+    .modal-overlay.active .modal-container {
+      transform: scale(1);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--grey-border);
+      padding-bottom: 12px;
+    }
+    .modal-header h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .modal-close:hover {
+      color: var(--bkash-pink);
+    }
+    .modal-content {
+      font-size: 1rem;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+    .modal-content p {
+      margin-bottom: 12px;
+    }
+    .modal-content ul {
+      margin: 12px 0 12px 20px;
+    }
+    .modal-content li {
+      margin-bottom: 8px;
+    }
+    .info-badge {
+      display: inline-block;
+      background: rgba(226,19,110,0.1);
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--bkash-pink);
+      margin-bottom: 12px;
+    }
+
+    /* Responsive */
     @media (max-width: 680px) {
       .container {
         padding: 0 18px;
       }
       .hero .brand-large {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
       .hero .brand-sub {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
       }
-      .hero p {
-        font-size: 0.95rem;
+      .hero .agent-tagline {
+        font-size: 1rem;
+        padding: 6px 16px;
       }
       .mfs-highlight {
         flex-direction: column;
@@ -372,11 +488,9 @@
       }
       .section-title {
         font-size: 1.6rem;
-        margin: 32px 0 24px;
       }
       .services-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
       }
       .location-section {
         flex-direction: column;
@@ -396,10 +510,10 @@
     }
     @media (max-width: 480px) {
       .hero .brand-large {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
       }
       .hero .brand-sub {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -407,29 +521,28 @@
 <body>
 
 <div class="container">
-  <!-- Navbar with MFS brand badges (animated) -->
   <div class="navbar animate-on-scroll">
     <div class="logo">
       <h1><i class="fas fa-store"></i> কাজী স্টোর</h1>
     </div>
     <div class="mfs-badges">
-      <div class="badge bkash"><i class="fab fa-buffer"></i> বিকাশ</div>
-      <div class="badge nagad"><i class="fas fa-charging-station"></i> নগদ</div>
-      <div class="badge rocket"><i class="fas fa-rocket"></i> রকেট</div>
+      <div class="badge bkash" data-mfs="bkash"><i class="fab fa-buffer"></i> বিকাশ</div>
+      <div class="badge nagad" data-mfs="nagad"><i class="fas fa-charging-station"></i> নগদ</div>
+      <div class="badge rocket" data-mfs="rocket"><i class="fas fa-rocket"></i> রকেট</div>
     </div>
   </div>
 
-  <!-- Hero Section: MFS Business Focus -->
+  <!-- Hero Section - Updated: removed WhatsApp button, changed tagline -->
   <div class="hero animate-on-scroll">
     <h2>
       <span class="brand-large">কাজী স্টোর</span>
       <span class="brand-sub">MFS প্রতিষ্ঠান হবে</span>
     </h2>
-    <p>দ্রুত, নিরাপদ ও ঝামেলামুক্ত ডিজিটাল লেনদেন — বিকাশ, নগদ, রকেট ক্যাশ ইন/আউট, মোবাইল রিচার্জ, বিল পেমেন্ট ও আরও অনেক কিছু</p>
+    <div class="agent-tagline">বিকাশ-নগদ রকেট অনুমোদিত এজেন্ট</div>
     <div class="mfs-highlight">
-      <span><i class="fas fa-exchange-alt" style="color: var(--mfs-green);"></i> তাৎক্ষণিক লেনদেন</span>
-      <span><i class="fas fa-shield-alt" style="color: var(--deep-blue);"></i> নিরাপদ ও বিশ্বস্ত</span>
-      <span><i class="fas fa-clock" style="color: var(--mfs-green);"></i> সকাল ৭টা – রাত ১১টা</span>
+      <span><i class="fas fa-exchange-alt"></i> তাৎক্ষণিক লেনদেন</span>
+      <span><i class="fas fa-shield-alt"></i> নিরাপদ ও বিশ্বস্ত</span>
+      <span><i class="fas fa-clock"></i> সকাল ৭টা – রাত ১১টা</span>
     </div>
   </div>
 
@@ -437,9 +550,7 @@
   <div class="section-title animate-on-scroll">
     <i class="fas fa-cogs" style="margin-right: 12px;"></i> আমাদের সার্ভিসসমূহ
   </div>
-  <div id="servicesGrid" class="services-grid">
-    <!-- Dynamic service cards injected via JS, each will have animate-on-scroll class -->
-  </div>
+  <div id="servicesGrid" class="services-grid"></div>
 
   <!-- Location Section -->
   <div class="location-section animate-on-scroll">
@@ -456,7 +567,6 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <div class="footer animate-on-scroll">
     <p>© ২০২৫ কাজী স্টোর — এমএফএস এজেন্ট ও ডিজিটাল সার্ভিস সেন্টার <br> 
       <i class="fas fa-phone-alt"></i> হটলাইন: ০১৯৬০ ৫২৩০৫২ &nbsp;|&nbsp; 
@@ -466,159 +576,177 @@
   </div>
 </div>
 
-<!-- Floating WhatsApp Quick Action -->
+<!-- Floating WhatsApp (kept as quick action) -->
 <a href="https://wa.me/8801960523052?text=হ্যালো%20কাজী%20স্টোর%2C%20আমি%20আপনার%20এমএফএস%20সার্ভিসগুলো%20সম্পর্কে%20জানতে%20চাই।" 
    class="floating-wa" target="_blank" rel="noopener noreferrer" aria-label="হোয়াটসঅ্যাপে যোগাযোগ">
   <i class="fab fa-whatsapp"></i>
 </a>
 
+<!-- Modal Overlay -->
+<div id="mfsModal" class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3 id="modalTitle"><i class="fab fa-buffer"></i> বিকাশ</h3>
+      <button class="modal-close" id="closeModalBtn">&times;</button>
+    </div>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+</div>
+
 <script>
-  // Service data: English headlines (Barlow font), Bengali descriptions, MFS first card featured
+  // Service data
   const servicesList = [
-    {
-      id: 1,
-      titleEnglish: "MFS Cash-in & Cash-out",
-      descBengali: "বিকাশ, নগদ, রকেট — তাৎক্ষণিক পাঠানো ও উত্তোলন। ২৪/৭ সেবা।",
-      icon: "fas fa-money-bill-wave",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার MFS (বিকাশ/নগদ/রকেট) ক্যাশ-ইন ও ক্যাশ-আউট সার্ভিসে আগ্রহী।",
-      featured: true
-    },
-    {
-      id: 2,
-      titleEnglish: "Mobile Recharge",
-      descBengali: "সকল অপারেটর (গ্রামীণ, রবি, বাংলালিংক, টেলিটক, এয়ারটেল) — তাৎক্ষণিক রিচার্জ।",
-      icon: "fas fa-mobile-alt",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার মোবাইল রিচার্জ সার্ভিসে আগ্রহী (সকল অপারেটর)।",
-      featured: false
-    },
-    {
-      id: 3,
-      titleEnglish: "SIM Service (Lost/Damaged)",
-      descBengali: "হারানো সিম উঠানো যায় এবং নষ্ট সিম নতুন ভাবে তোলা যায়।", 
-      icon: "fas fa-sim-card",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার সিম সার্ভিস (হারানো/নষ্ট সিম প্রতিস্থাপন) সম্পর্কে আগ্রহী।",
-      featured: false
-    },
-    {
-      id: 4,
-      titleEnglish: "Admission & Fees Payment",
-      descBengali: "ভর্তি ফর্ম পূরণ, টিউশন ফি, হল চার্জ পরিশোধ (ইউনিভার্সিটি/কলেজ)।",
-      icon: "fas fa-graduation-cap",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ইউনিভার্সিটি/কলেজ ভর্তি ও ফি প্রদান সার্ভিসে আগ্রহী।",
-      featured: false
-    },
-    {
-      id: 5,
-      titleEnglish: "Utility Bills",
-      descBengali: "বিদ্যুৎ, গ্যাস, ইন্টারনেট, ওয়াসা — তাৎক্ষণিক বিল পরিশোধ।",
-      icon: "fas fa-bolt",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ইউটিলিটি বিল (বিদ্যুৎ/গ্যাস/ইন্টারনেট) পরিশোধ সার্ভিসে আগ্রহী।",
-      featured: false
-    },
-    {
-      id: 6,
-      titleEnglish: "Photo Printing & Passport",
-      descBengali: "উচ্চমানের প্রিন্ট, আইডি ছবি প্রফেশনাল রিটাচ সহ পাসপোর্ট ছবি।",
-      icon: "fas fa-camera",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ছবি প্রিন্টিং ও পাসপোর্ট ছবি সার্ভিসে আগ্রহী।",
-      featured: false
-    },
-    {
-      id: 7,
-      titleEnglish: "Document Composing & Bio-data",
-      descBengali: "সিভি/রেজুমি তৈরি, বায়োডাটা, আবেদনপত্র রচনা ও কম্পোজিং।",
-      icon: "fas fa-file-alt",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার ডকুমেন্ট কম্পোজিং ও বায়োডাটা ক্রিয়েশন সার্ভিসে আগ্রহী।",
-      featured: false
-    },
-    {
-      id: 8,
-      titleEnglish: "Laminating & Photocopy",
-      descBengali: "দ্রুত ফটোকপি, লেমিনেটিং, স্পাইরাল বাইন্ডিং সহ সব ধরনের প্রিন্ট সেবা।",
-      icon: "fas fa-print",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার লেমিনেটিং ও ফটোকপি সার্ভিসে আগ্রহী।",
-      featured: false
-    },
-    {
-      id: 9,
-      titleEnglish: "Online GD & Traffic Fine",
-      descBengali: "জেনারেল ডায়েরি (অনলাইন), ট্রাফিক জরিমানা পরিশোধ ও সহায়তা।",
-      icon: "fas fa-gavel",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার অনলাইন জিডি ও ট্রাফিক জরিমানা পরিশোধ সার্ভিসে আগ্রহী।",
-      featured: false
-    },
-    {
-      id: 10,
-      titleEnglish: "MFS Account Opening",
-      descBengali: "বিকাশ, নগদ, রকেট অ্যাকাউন্ট খোলা ও পূর্ণ সাপোর্ট।",
-      icon: "fas fa-user-plus",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার এমএফএস অ্যাকাউন্ট খোলার সার্ভিসে আগ্রহী।",
-      featured: false
-    },
-    {
-      id: 11,
-      titleEnglish: "Birth Certificate Correction",
-      descBengali: "নাম/জন্মতারিখ সংশোধন, অনলাইন করেকশন ও ডেলিভারি ট্র্যাকিং।",
-      icon: "fas fa-id-card",
-      waMessage: "হ্যালো কাজী স্টোর, আমি আপনার জন্ম নিবন্ধন সংশোধন সার্ভিসে আগ্রহী।",
-      featured: false
-    }
+    { id:1, titleEnglish:"MFS Cash-in & Cash-out", descBengali:"বিকাশ, নগদ, রকেট — তাৎক্ষণিক পাঠানো ও উত্তোলন। ২৪/৭ সেবা।", icon:"fas fa-money-bill-wave", waMessage:"হ্যালো কাজী স্টোর, আমি আপনার MFS (বিকাশ/নগদ/রকেট) ক্যাশ-ইন ও ক্যাশ-আউট সার্ভিসে আগ্রহী।", featured:true },
+    { id:2, titleEnglish:"Mobile Recharge", descBengali:"সকল অপারেটর (গ্রামীণ, রবি, বাংলালিংক, টেলিটক, এয়ারটেল) — তাৎক্ষণিক রিচার্জ।", icon:"fas fa-mobile-alt", waMessage:"হ্যালো কাজী স্টোর, আমি আপনার মোবাইল রিচার্জ সার্ভিসে আগ্রহী।", featured:false },
+    { id:3, titleEnglish:"SIM Service (Lost/Damaged)", descBengali:"হারানো সিম উঠানো যায় এবং নষ্ট সিম নতুন ভাবে তোলা যায়।", icon:"fas fa-sim-card", waMessage:"হ্যালো কাজী স্টোর, আমি আপনার সিম সার্ভিস (হারানো/নষ্ট সিম) সম্পর্কে আগ্রহী।", featured:false },
+    { id:4, titleEnglish:"Admission & Fees Payment", descBengali:"ভর্তি ফর্ম পূরণ, টিউশন ফি, হল চার্জ পরিশোধ (ইউনিভার্সিটি/কলেজ)।", icon:"fas fa-graduation-cap", waMessage:"হ্যালো কাজী স্টোর, আমি আপনার ইউনিভার্সিটি/কলেজ ভর্তি ও ফি প্রদান সার্ভিসে আগ্রহী।", featured:false },
+    { id:5, titleEnglish:"Utility Bills", descBengali:"বিদ্যুৎ, গ্যাস, ইন্টারনেট, ওয়াসা — তাৎক্ষণিক বিল পরিশোধ।", icon:"fas fa-bolt", waMessage:"হ্যালো কাজী স্টোর, আমি আপনার ইউটিলিটি বিল পরিশোধ সার্ভিসে আগ্রহী।", featured:false },
+    { id:6, titleEnglish:"Photo Printing & Passport", descBengali:"উচ্চমানের প্রিন্ট, আইডি ছবি প্রফেশনাল রিটাচ সহ পাসপোর্ট ছবি।", icon:"fas fa-camera", waMessage:"হ্যালো কাজী স্টোর, আমি আপনার ছবি প্রিন্টিং ও পাসপোর্ট ছবি সার্ভিসে আগ্রহী।", featured:false },
+    { id:7, titleEnglish:"Document Composing & Bio-data", descBengali:"সিভি/রেজুমি তৈরি, বায়োডাটা, আবেদনপত্র রচনা ও কম্পোজিং।", icon:"fas fa-file-alt", waMessage:"হ্যালো কাজী স্টোর, আমি আপনার ডকুমেন্ট কম্পোজিং ও বায়োডাটা সার্ভিসে আগ্রহী।", featured:false },
+    { id:8, titleEnglish:"Laminating & Photocopy", descBengali:"দ্রুত ফটোকপি, লেমিনেটিং, স্পাইরাল বাইন্ডিং সহ সব ধরনের প্রিন্ট সেবা।", icon:"fas fa-print", waMessage:"হ্যালো কাজী স্টোর, আমি আপনার লেমিনেটিং ও ফটোকপি সার্ভিসে আগ্রহী।", featured:false },
+    { id:9, titleEnglish:"Online GD & Traffic Fine", descBengali:"জেনারেল ডায়েরি (অনলাইন), ট্রাফিক জরিমানা পরিশোধ ও সহায়তা।", icon:"fas fa-gavel", waMessage:"হ্যালো কাজী স্টোর, আমি আপনার অনলাইন জিডি ও ট্রাফিক জরিমানা সার্ভিসে আগ্রহী।", featured:false },
+    { id:10, titleEnglish:"MFS Account Opening", descBengali:"বিকাশ, নগদ, রকেট অ্যাকাউন্ট খোলা ও পূর্ণ সাপোর্ট।", icon:"fas fa-user-plus", waMessage:"হ্যালো কাজী স্টোর, আমি আপনার এমএফএস অ্যাকাউন্ট খোলার সার্ভিসে আগ্রহী।", featured:false },
+    { id:11, titleEnglish:"Birth Certificate Correction", descBengali:"নাম/জন্মতারিখ সংশোধন, অনলাইন করেকশন ও ডেলিভারি ট্র্যাকিং।", icon:"fas fa-id-card", waMessage:"হ্যালো কাজী স্টোর, আমি আপনার জন্ম নিবন্ধন সংশোধন সার্ভিসে আগ্রহী।", featured:false }
   ];
 
   const storePhone = "8801960523052";
-
-  function getWhatsAppLink(phone, message) {
-    const encodedMsg = encodeURIComponent(message);
-    return `https://wa.me/${phone}?text=${encodedMsg}`;
-  }
+  function getWhatsAppLink(phone, message) { return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`; }
 
   function renderServices() {
-    const gridContainer = document.getElementById('servicesGrid');
-    if (!gridContainer) return;
-
-    let cardsHTML = '';
-    for (let service of servicesList) {
-      const waLink = getWhatsAppLink(storePhone, service.waMessage);
-      const featuredClass = service.featured ? 'mfs-featured' : '';
-      cardsHTML += `
+    const grid = document.getElementById('servicesGrid');
+    if(!grid) return;
+    let html = '';
+    for(let s of servicesList) {
+      const waLink = getWhatsAppLink(storePhone, s.waMessage);
+      const featuredClass = s.featured ? 'mfs-featured' : '';
+      html += `
         <div class="service-card ${featuredClass} animate-on-scroll">
-          <div class="card-icon">
-            <i class="${service.icon}"></i>
-          </div>
-          <h3>${service.titleEnglish}</h3>
-          <div class="service-desc">${service.descBengali}</div>
-          <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="contact-wa-btn">
-            <i class="fab fa-whatsapp"></i> হোয়াটসঅ্যাপে যোগাযোগ
-          </a>
+          <div class="card-icon"><i class="${s.icon}"></i></div>
+          <h3>${s.titleEnglish}</h3>
+          <div class="service-desc">${s.descBengali}</div>
+          <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="contact-wa-btn"><i class="fab fa-whatsapp"></i> হোয়াটসঅ্যাপে যোগাযোগ</a>
         </div>
       `;
     }
-    gridContainer.innerHTML = cardsHTML;
+    grid.innerHTML = html;
   }
 
-  // Intersection Observer for scroll animations
+  // MFS তথ্য (বিকাশ নতুন রেট, নগদ ও রকেট পূর্বের মতো)
+  const mfsInfo = {
+    bkash: {
+      name: "বিকাশ",
+      icon: "fab fa-buffer",
+      content: `
+        <div class="info-badge">বিকাশ এজেন্ট ক্যাশ আউট চার্জ ও লিমিট (হালনাগাদ)</div>
+        <p><strong>ক্যাশ আউট চার্জ:</strong> প্রতি হাজারে ১৫ টাকা (১.৫%)</p>
+        <p><strong>ন্যূনতম/সর্বোচ্চ চার্জ:</strong> প্রযোজ্য নয় (শুধু প্রতি হাজারে ১৫ টাকা)</p>
+        <p><strong>লেনদেন লিমিট:</strong></p>
+        <ul>
+          <li>প্রতিদিন সর্বোচ্চ: ৮০,০০০ টাকা (এজেন্ট পয়েন্টে)</li>
+          <li>প্রতি লেনদেনে সর্বোচ্চ: ৩,০০,০০০ টাকা (তিন লাখ টাকা পর্যন্ত উত্তোলন)</li>
+          <li>মাসিক সর্বোচ্চ: ২,০০,০০০ টাকা (এজেন্ট নিয়ম অনুযায়ী)</li>
+        </ul>
+        <p><strong>ক্যাশ ইন চার্জ:</strong> বিনামূল্যে (০%)</p>
+        <p><i class="fas fa-info-circle"></i> বিকাশ এজেন্ট পলিসি অনুযায়ী সর্বশেষ হালনাগাদ তথ্য।</p>
+      `
+    },
+    nagad: {
+      name: "নগদ",
+      icon: "fas fa-charging-station",
+      content: `
+        <div class="info-badge">নগদ ক্যাশ আউট চার্জ ও লিমিট</div>
+        <p><strong>ক্যাশ আউট চার্জ:</strong> ১.৪৯% + ১৫% ভ্যাট (মোট প্রায় ১.৭১৩৫%)</p>
+        <p><strong>ন্যূনতম চার্জ:</strong> ৪.০০ টাকা (ভ্যাট সহ)</p>
+        <p><strong>সর্বোচ্চ চার্জ:</strong> ১৫০ টাকা (ভ্যাট সহ)</p>
+        <p><strong>লেনদেন লিমিট:</strong></p>
+        <ul>
+          <li>প্রতিদিন সর্বোচ্চ: ৩০,০০০ টাকা</li>
+          <li>মাসিক সর্বোচ্চ: ৩,০০,০০০ টাকা</li>
+          <li>প্রতি লেনদেন সর্বোচ্চ: ২৫,০০০ টাকা</li>
+        </ul>
+        <p><strong>ক্যাশ ইন চার্জ:</strong> বিনামূল্যে</p>
+        <p><i class="fas fa-info-circle"></i> নগদ এজেন্ট নেটওয়ার্কের আপডেট তথ্য অনুযায়ী।</p>
+      `
+    },
+    rocket: {
+      name: "রকেট",
+      icon: "fas fa-rocket",
+      content: `
+        <div class="info-badge">রকেট ক্যাশ আউট চার্জ ও লিমিট</div>
+        <p><strong>ক্যাশ আউট চার্জ:</strong> ১.৮০% + ১৫% ভ্যাট (মোট ~২.০৭%)</p>
+        <p><strong>ন্যূনতম চার্জ:</strong> ৫.০০ টাকা (ভ্যাট সহ)</p>
+        <p><strong>সর্বোচ্চ চার্জ:</strong> ২০০ টাকা (ভ্যাট সহ)</p>
+        <p><strong>লেনদেন লিমিট:</strong></p>
+        <ul>
+          <li>প্রতিদিন সর্বোচ্চ: ২০,০০০ টাকা</li>
+          <li>মাসিক সর্বোচ্চ: ১,৫০,০০০ টাকা</li>
+          <li>প্রতি লেনদেনে সর্বোচ্চ: ২০,০০০ টাকা</li>
+        </ul>
+        <p><strong>ক্যাশ ইন চার্জ:</strong> বিনামূল্যে</p>
+        <p><i class="fas fa-info-circle"></i> ডাচ্-বাংলা ব্যাংক রকেট এজেন্ট নির্দেশিকা অনুযায়ী।</p>
+      `
+    }
+  };
+
+  // Modal logic
+  const modalOverlay = document.getElementById('mfsModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalContentDiv = document.getElementById('modalContent');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+
+  function openModal(mfsKey) {
+    const info = mfsInfo[mfsKey];
+    if(info) {
+      modalTitle.innerHTML = `<i class="${info.icon}"></i> ${info.name}`;
+      modalContentDiv.innerHTML = info.content;
+      modalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.badge').forEach(badge => {
+    badge.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const mfsType = badge.getAttribute('data-mfs');
+      if(mfsType === 'bkash') openModal('bkash');
+      else if(mfsType === 'nagad') openModal('nagad');
+      else if(mfsType === 'rocket') openModal('rocket');
+    });
+  });
+
+  closeModalBtn.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', (e) => {
+    if(e.target === modalOverlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
+  });
+
+  // Scroll animations
   function initScrollAnimations() {
     const elements = document.querySelectorAll('.animate-on-scroll');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if(entry.isIntersecting) {
           entry.target.classList.add('animated');
-          observer.unobserve(entry.target); // animate only once
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
-    
     elements.forEach(el => observer.observe(el));
   }
 
-  // Also handle initial load: if some elements are already visible
   document.addEventListener('DOMContentLoaded', () => {
     renderServices();
-    // After rendering, re-query for new cards and observe them
     setTimeout(() => {
       initScrollAnimations();
     }, 100);
-    console.log("কাজী স্টোর MFS বিজনেস ওয়েবসাইট প্রস্তুত — এনিমেশন ও নতুন সময়সূচী সংযোজিত");
+    console.log("কাজী স্টোর - হিরো সেকশন আপডেট: বাটন রিমুভ, 'বিকাশ-নগদ রকেট অনুমোদিত এজেন্ট' যুক্ত");
   });
 </script>
 </body>
